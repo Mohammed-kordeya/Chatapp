@@ -1,6 +1,9 @@
 <?php 
 include ('db.php');
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,38 +17,53 @@ include ('db.php');
         <div id="chatbox"></div> 
 
         <form id="chatForm">
-            <input type="text" name="name" placeholder="Enter your name" required>
-            <textarea name="msg" placeholder="Enter your message" required></textarea>
+        <input type="text" id="username" name="name" placeholder="Enter your name" required>
+        <textarea name="msg" placeholder="Enter your message" required></textarea>
             <input type="submit" value="Send">
         </form>
     </div>
 
     <script>
-        function loadMessages() {
-            fetch("fetch_messages.php")
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("chatbox").innerHTML = data;
-            });
-        }
+      document.addEventListener("DOMContentLoaded", function () {
+    let usernameField = document.getElementById("username");
 
-        setInterval(loadMessages, 1000);
+    if (localStorage.getItem("username")) {
+        usernameField.value = localStorage.getItem("username");
+    }
 
-        document.getElementById("chatForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // منع إعادة التحميل
+    usernameField.addEventListener("input", function () {
+        localStorage.setItem("username", usernameField.value);
+    });
 
-            let formData = new FormData(this);
-
-            fetch("send_message.php", {
-                method: "POST",
-                body: formData
-            }).then(() => {
-                loadMessages(); 
-                document.getElementById("chatForm").reset();
-            });
+    function loadMessages() {
+        fetch("fetch_messages.php")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("chatbox").innerHTML = data;
         });
+    }
 
-        loadMessages();
+    setInterval(loadMessages, 1000);
+
+    document.getElementById("chatForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let usernameValue = usernameField.value; 
+        let formData = new FormData(this);
+
+        fetch("send_message.php", {
+            method: "POST",
+            body: formData
+        }).then(() => {
+            loadMessages(); 
+            document.getElementById("chatForm").reset();
+            usernameField.value = usernameValue; 
+        });
+    });
+
+    loadMessages();
+});
+
     </script>
 
 </body>
