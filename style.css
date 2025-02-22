@@ -41,28 +41,81 @@ form {
     padding: 15px;
 }
 
+/* تحسين عام للحقول */
 input, textarea {
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
+    padding: 12px;
+    margin: 8px 0;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    background-color: #fafafa;
+    outline: none;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* تحسين مربع النص */
 textarea {
     height: 60px;
     resize: none;
 }
 
-input[type="submit"] {
-    background-color: #0288d1;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
+input:focus, textarea:focus {
+    border-color: #0daceb;
+    box-shadow: 0 0 8px rgba(3, 194, 252, 0.5);
 }
 
-input[type="submit"]:hover {
-    background-color: #01579b;
+input[type="submit"] {
+    background-color: #0f75eb;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* تأثير عند تمرير الماوس */
+input[type="submit"]:hover {
+    transform: scale(1.05);
+}
+input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 2px dashed #0288d1;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    text-align: center;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="file"]:hover {
+    background-color: #e3f2fd;
+    border-color: #01579b;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background: linear-gradient(135deg, #0288d1, #03a9f4);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background: linear-gradient(135deg, #01579b, #0288d1);
+    transform: scale(1.05);
+}
+

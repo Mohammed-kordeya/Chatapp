@@ -9,21 +9,24 @@ include ('db.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.3">
     <title>Chatapp</title>
 </head>
 <body>
+   
     <div id="container">
         <div id="chatbox"></div> 
 
-        <form id="chatForm">
-        <input type="text" id="username" name="name" placeholder="Enter your name" required>
-        <textarea name="msg" placeholder="Enter your message" required></textarea>
-            <input type="submit" value="Send">
-        </form>
+        <form id="chatForm" enctype="multipart/form-data">
+    <input type="text" id="username" name="name" placeholder="Enter your name" required>
+    <textarea name="msg" placeholder="Enter your message" required></textarea>
+    <input type="file" name="image" accept="image/*">
+    <input type="submit" value="Send">
+</form>
     </div>
 
     <script>
+        
       document.addEventListener("DOMContentLoaded", function () {
     let usernameField = document.getElementById("username");
 
